@@ -1,0 +1,15 @@
+.App {
+  display: grid;
+  width: 99%;
+  height: 99%;
+  text-align: center;
+  grid-template-rows: [first] 30% [second] 70%;
+}
+
+.cardList {
+  grid-area: first;
+}
+
+.graph {
+  grid-area: second;
+}

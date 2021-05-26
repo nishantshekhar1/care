@@ -1,0 +1,8 @@
+container {
+    width: 99%;
+    height: 99%;
+    display: grid;
+    grid-template-rows: [first] 25%;
+    grid-template-columns: [second] 75%;
+}
+
