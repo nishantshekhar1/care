@@ -1,12 +1,11 @@
 .card {
     padding: 2%;
-    border: 1px solid #f0f0f0;
-    border-radius: 20px;
-    background-color: #e1e5ea;
-    width: 50%;
-    height: 15%;
-    /* color: wheat; */
-    color: #233e8b;
+    border: 3px solid;
+    border-radius: 50%;
+    /* background-color: #e1e5ea; */
+    width: 120px;
+    height: 120px;
+    /* color: #476ede; */
     text-align: center;
     justify-items: center;
 }

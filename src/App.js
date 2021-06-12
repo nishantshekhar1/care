@@ -4,7 +4,6 @@ import Graph from "./components/Graph/Graph";
 import { getData } from "./actions/DataAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import e from 'cors';
 
 const App = () => {
 
@@ -14,7 +13,7 @@ const App = () => {
 
   const stateData = useSelector((state) => {
     const { data } = state;
-    console.log(data);
+    // console.log(data);
     if (data && data.hasOwnProperty(selectedState))
       return data[selectedState];
     else
@@ -26,17 +25,16 @@ const App = () => {
     dispatch(getData());
   }, [dispatch]);
 
-  console.log(stateData);
-  if (!stateData) {
+  // console.log(stateData);
+  if (!stateData)
     return <div></div>
-  } else {
-    return (
-      <div className="App">
-        <CardList total={stateData["total"]} />
-        <Graph weekData={stateData} />
-      </div>
-    );
-  }
+
+  return (
+    <div className="App">
+      <CardList total={stateData["total"]} />
+      <Graph weekData={stateData} />
+    </div>
+  );
 
 }
 

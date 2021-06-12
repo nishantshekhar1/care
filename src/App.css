@@ -4,18 +4,19 @@
   height: 100%;
   /* justify-items: center; */
   align-items: center;
-  grid-template-rows: 100%;
-  grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%;
+  /* grid-template-columns: 30% 70%; */
+  /* grid-template-areas: "first second" "third fourth"; */
   grid-template-areas: "first" "second";
-  background-color: #faf3f3;
+  background-color: #202040;
 }
 
-.cardList {
+/* .cardList {
   grid-area: first;
-}
+} */
 
-.graph {
-  /* grid-area: second; */
+/* .graph {
+  grid-area: fourth;
   width: 100%;
   height: 90%;
-}
+} */
