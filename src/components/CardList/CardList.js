@@ -5,8 +5,11 @@ import "../../styles/CardList/CardList.css";
 
 const CardList = ({ total }) => {
 
-    const colors = ["#FFAA33", "red", "green", "purple", "blue"];
+    let colors = ["#FFAA33", "red", "green", "#cc50cc", "blue"];
     let index = 0;
+
+    if(Object.keys(total).length > 5)
+        colors.splice(4, 0, "#cc62b9")
     let cards = Object.entries(total).map(([key, value]) => {
         console.log(key, value);
         const card = <Card data={{ key, value, color: colors[index] }} />;

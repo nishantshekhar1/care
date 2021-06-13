@@ -1,6 +1,6 @@
 .cardList {
     /* grid-area: second; */
-    grid-area: first;
+    grid-area: second;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -9,4 +9,11 @@
     justify-content: space-around;
     align-items: stretch;
     align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .cardList {
+        width: 100%;
+        justify-content:space-evenly;
+    }
 }

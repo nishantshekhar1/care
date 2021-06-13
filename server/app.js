@@ -36,7 +36,7 @@ const updateData = async () => {
     let today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const sevenDayBackTimeStamp = new Date(today.getTime() - (7 * 24 * 60 * 60 * 1000));
+    const sevenDayBackTimeStamp = new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000));
 
     const res = await axios.get(process.env.DATA_URL);
 
@@ -54,6 +54,17 @@ const updateData = async () => {
             if (currData === undefined)
                 currData = JSON.parse(JSON.stringify(initialValue));
 
+            if(currData["vaccinated1"] && currData["vaccinated2"]){
+                currData["vaccinated1"] = currData["vaccinated1"] === undefined ? 0 : currData["vaccinated1"];
+                currData["vaccinated2"] = currData["vaccinated2"] === undefined ? 0 : currData["vaccinated2"];
+                currData["vaccinated"] = currData["vaccinated1"] + currData["vaccinated2"];
+                delete currData["vaccinated1"];
+                delete currData["vaccinated2"];
+            }
+
+            if(currData["other"])
+                delete currData["other"];
+        
             data[state][date] = currData;
 
             if (data["overall"][date] === undefined)
@@ -66,7 +77,21 @@ const updateData = async () => {
             overallDate["tested"] += currData["tested"] === undefined ? 0 : currData["tested"];
             overallDate["vaccinated"] += currData["vaccinated"] === undefined ? 0 : currData["vaccinated"];
 
-            lastData = dateData["total"];
+            let totalData = dateData["total"];
+            if (totalData === undefined)
+                totalData = JSON.parse(JSON.stringify(initialValue));
+
+            if (totalData["vaccinated1"] && totalData["vaccinated2"]) {
+                totalData["vaccinated1"] = totalData["vaccinated1"] === undefined ? 0 : totalData["vaccinated1"];
+                totalData["vaccinated2"] = totalData["vaccinated2"] === undefined ? 0 : totalData["vaccinated2"];
+                totalData["vaccinated"] = totalData["vaccinated1"] + totalData["vaccinated2"];
+                delete totalData["vaccinated1"];
+                delete totalData["vaccinated2"];
+            }
+
+            if (totalData["other"])
+                delete totalData["other"];
+            lastData = totalData;
         });
 
         if (lastData === undefined)
@@ -75,15 +100,15 @@ const updateData = async () => {
         data[state]["total"] = lastData;
 
         let overallTotal = data["overall"]["total"];
-        overallTotal["confirmed"] += lastData["confirmed"];
-        overallTotal["deceased"] += lastData["deceased"];
-        overallTotal["recovered"] += lastData["recovered"];
-        overallTotal["tested"] += lastData["tested"];
-        overallTotal["vaccinated"] += lastData["vaccinated"];
+        overallTotal["confirmed"] += lastData["confirmed"] === undefined ? 0 : lastData["confirmed"];
+        overallTotal["deceased"] += lastData["deceased"] === undefined ? 0 : lastData["deceased"];
+        overallTotal["recovered"] += lastData["recovered"] === undefined ? 0 : lastData["recovered"];
+        overallTotal["tested"] += lastData["tested"] === undefined ? 0 : lastData["tested"];
+        overallTotal["vaccinated"] += lastData["vaccinated"] === undefined ? 0 : lastData["vaccinated"];
 
     });
 
-    console.log(data["overall"]);
+    console.log(data);
 }
 
 app.get("/getData", (req, res) => {
