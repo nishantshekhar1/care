@@ -1,7 +1,6 @@
 import './App.css';
 import CardList from "./components/CardList/CardList";
 import Graph from "./components/Graph/Graph";
-import Dropdown from "react-dropdown";
 import Select from "react-select";
 import { getData } from "./actions/DataAction";
 import { locations } from "./actions/types";
@@ -10,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
 
-  const [location, setLocation] = useState({value:"overall", label:"Overall"});
+  const [location, setLocation] = useState({value:"overall", label:"All India"});
   const dispatch = useDispatch();
 
   // let selectedState = "overall";

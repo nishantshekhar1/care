@@ -5,31 +5,17 @@
   justify-items: center;
   align-items: center;
   grid-template-rows: 10% 30% 60%;
-  /* grid-template-columns: 30% 70%; */
-  /* grid-template-areas: "first second" "third fourth"; */
   grid-template-areas: "first" "second" "third";
   background-color: #202040;
 }
 
-/* .cardList {
-  grid-area: first;
-} */
-
-/* .graph {
-  grid-area: fourth;
-  width: 100%;
-  height: 90%;
-} */
-
 .location {
   grid-area: first;
   width: 50%;
-  /* justify-content: center; */
 }
 
 @media only screen and (max-width: 600px) {
   .App {
-    /* font-size: 0.5em; */
     grid-template-rows: 10% 20% 70%;
     align-items: center;
   }

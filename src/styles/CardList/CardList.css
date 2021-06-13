@@ -1,11 +1,9 @@
 .cardList {
-    /* grid-area: second; */
     grid-area: second;
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 90%;
-    /* flex-wrap: wrap; */
     justify-content: space-around;
     align-items: stretch;
     align-items: center;

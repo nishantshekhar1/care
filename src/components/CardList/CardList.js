@@ -1,11 +1,10 @@
 import React from "react";
-// import { Card } from "antd";
 import { Card } from "../Card/Card";
 import "../../styles/CardList/CardList.css";
 
 const CardList = ({ total }) => {
 
-    let colors = ["#FFAA33", "red", "green", "#cc50cc", "blue"];
+    let colors = ["#FFAA33", "red", "green", "#de6ade", "#0088ff"];
     let index = 0;
 
     if(Object.keys(total).length > 5)

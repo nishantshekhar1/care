@@ -23,15 +23,22 @@ const initialValue = {
     vaccinated: 0,
 };
 
-let data = {
-    overall: {
-        total: JSON.parse(JSON.stringify(initialValue))
-    }
-};
+const initializeData = () => {
+
+    let initData = {
+        overall: {
+            total: JSON.parse(JSON.stringify(initialValue))
+        }
+    };
+    return initData;
+
+}
+
+let data = undefined;
 
 const updateData = async () => {
 
-    data = JSON.parse(JSON.stringify(data)); // re-initialize
+    data = initializeData(); // re-initialize
 
     let today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -54,17 +61,17 @@ const updateData = async () => {
             if (currData === undefined)
                 currData = JSON.parse(JSON.stringify(initialValue));
 
-            if(currData["vaccinated1"] && currData["vaccinated2"]){
+            if (currData["vaccinated1"] && currData["vaccinated2"]) {
                 currData["vaccinated1"] = currData["vaccinated1"] === undefined ? 0 : currData["vaccinated1"];
                 currData["vaccinated2"] = currData["vaccinated2"] === undefined ? 0 : currData["vaccinated2"];
-                currData["vaccinated"] = currData["vaccinated1"] + currData["vaccinated2"];
+                currData["vaccinated"] = currData["vaccinated1"] + 0;
                 delete currData["vaccinated1"];
                 delete currData["vaccinated2"];
             }
 
-            if(currData["other"])
+            if (currData["other"])
                 delete currData["other"];
-        
+
             data[state][date] = currData;
 
             if (data["overall"][date] === undefined)
@@ -84,7 +91,7 @@ const updateData = async () => {
             if (totalData["vaccinated1"] && totalData["vaccinated2"]) {
                 totalData["vaccinated1"] = totalData["vaccinated1"] === undefined ? 0 : totalData["vaccinated1"];
                 totalData["vaccinated2"] = totalData["vaccinated2"] === undefined ? 0 : totalData["vaccinated2"];
-                totalData["vaccinated"] = totalData["vaccinated1"] + totalData["vaccinated2"];
+                totalData["vaccinated"] = totalData["vaccinated1"] + 0;
                 delete totalData["vaccinated1"];
                 delete totalData["vaccinated2"];
             }
