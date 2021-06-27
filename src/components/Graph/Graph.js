@@ -34,7 +34,7 @@ export const Graph = ({ weekData }) => {
                 </defs>
                 <XAxis dataKey="date" />
                 <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <Tooltip />
                 <Area type="monotone" dataKey="active" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
             </AreaChart>

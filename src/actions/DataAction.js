@@ -6,7 +6,8 @@ export const getData = () => async (dispatch) => {
     console.log("getData Action");
 
     try {
-        const res = await axios.get("http://localhost:8080/getData");
+        // const res = await axios.get("http://localhost:8080/getData");
+        const res = await axios.get("/getData");
         console.log(res.data);
 
         dispatch({

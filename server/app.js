@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 
-const cors = require("cors");
+// const cors = require("cors");
 const logger = require("./services/logger.js");
 // const dataHelper = require("./services/data.js");
 const app = express();
@@ -9,9 +9,10 @@ const envVariables = dotenv.config();
 logger.info(`ENV_VARIABLES = ${JSON.stringify(envVariables)}`);
 let firstFetch = false;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.static('build'));
 
 const axios = require("axios");
 
@@ -52,7 +53,7 @@ const updateData = async () => {
         data[state] = {};
         let lastData = undefined;
 
-        Object.entries(value.dates).forEach(([date, dateData]) => {
+        Object.entries(value.dates).forEach(([date, dateData]) => {     
             const dateTimeStamp = new Date(date).getTime();
             if (dateTimeStamp < sevenDayBackTimeStamp.getTime())
                 return;
@@ -64,7 +65,7 @@ const updateData = async () => {
             if (currData["vaccinated1"] && currData["vaccinated2"]) {
                 currData["vaccinated1"] = currData["vaccinated1"] === undefined ? 0 : currData["vaccinated1"];
                 currData["vaccinated2"] = currData["vaccinated2"] === undefined ? 0 : currData["vaccinated2"];
-                currData["vaccinated"] = currData["vaccinated1"] + 0;
+                currData["vaccinated"] = currData["vaccinated2"] + 0;
                 delete currData["vaccinated1"];
                 delete currData["vaccinated2"];
             }
@@ -91,7 +92,7 @@ const updateData = async () => {
             if (totalData["vaccinated1"] && totalData["vaccinated2"]) {
                 totalData["vaccinated1"] = totalData["vaccinated1"] === undefined ? 0 : totalData["vaccinated1"];
                 totalData["vaccinated2"] = totalData["vaccinated2"] === undefined ? 0 : totalData["vaccinated2"];
-                totalData["vaccinated"] = totalData["vaccinated1"] + 0;
+                totalData["vaccinated"] = totalData["vaccinated2"] + 0;
                 delete totalData["vaccinated1"];
                 delete totalData["vaccinated2"];
             }
@@ -117,6 +118,10 @@ const updateData = async () => {
 
     console.log(data);
 }
+
+app.get("/", (req, res) => {
+    res.sendFile("index.html");
+})
 
 app.get("/getData", (req, res) => {
     console.log("getData Called");

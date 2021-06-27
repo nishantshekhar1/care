@@ -26,7 +26,7 @@
     "winston": "^3.3.3"
   },
   "scripts": {
-    "start": "NODE_ENV=development node server/app.js",
+    "start": "node server/app.js",
     "react": "react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
