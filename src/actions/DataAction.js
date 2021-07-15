@@ -7,7 +7,7 @@ export const getData = () => async (dispatch) => {
 
     try {
         // const res = await axios.get("http://localhost:8080/getData");
-        const res = await axios.get("/getData");
+        const res = await axios.get("https://www.covid19care.org/getData");
         console.log(res.data);
 
         dispatch({

@@ -50,9 +50,12 @@ const updateData = async () => {
 
     Object.entries(res.data).forEach(([state, value]) => {
 
+        if(state === "TT" || state === "UN")
+            return;
+        
         data[state] = {};
         let lastData = undefined;
-
+        
         Object.entries(value.dates).forEach(([date, dateData]) => {     
             const dateTimeStamp = new Date(date).getTime();
             if (dateTimeStamp < sevenDayBackTimeStamp.getTime())
@@ -77,7 +80,7 @@ const updateData = async () => {
 
             if (data["overall"][date] === undefined)
                 data["overall"][date] = JSON.parse(JSON.stringify(initialValue));
-
+            
             let overallDate = data["overall"][date];
             overallDate["confirmed"] += currData["confirmed"] === undefined ? 0 : currData["confirmed"];
             overallDate["deceased"] += currData["deceased"] === undefined ? 0 : currData["deceased"];
@@ -116,7 +119,7 @@ const updateData = async () => {
 
     });
 
-    console.log(data);
+    // console.log(data);
 }
 
 app.get("/", (req, res) => {

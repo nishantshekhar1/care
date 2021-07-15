@@ -1,0 +1,11 @@
+runtime: nodejs14
+
+env_variables:
+  PORT: "8080"
+  DATA_URL: "https://api.covid19india.org/v4/min/timeseries.min.json"
+
+handlers:
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
